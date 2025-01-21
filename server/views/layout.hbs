@@ -5,6 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    {{#if error}}
+      <p>Error: {{error}}</p>
+    {{/if}}
+    {{#if error_msg}}
+      <p>Error msg: {{error_msg}}</p>
+    {{/if}}
+    {{#if locals.errors}}
+      <p>Local errors: {{locals.errors}}</p>
+    {{/if}}
+    {{#if success_msg}}
+      <p>Success: {{success_msg}}</p>
+    {{/if}}
     {{{body}}}
   </body>
 </html>

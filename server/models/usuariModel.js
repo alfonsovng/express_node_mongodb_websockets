@@ -22,6 +22,10 @@ const UsuariSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  contrasenya: {
+    type: String,
+    required: true
+  },
   idiomes: {
     type: [String],
     required: true,

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const IndexController = require('../controllers/indexController')
+const UsuarisController = require('../controllers/usuarisController');
 const { ensureAuthenticated } = require('../middleware/auth');
 
-router.get('/', ensureAuthenticated, IndexController.index);
+router.get('/', ensureAuthenticated, UsuarisController.list);
 
 module.exports = router;
