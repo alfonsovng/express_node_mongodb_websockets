@@ -12,9 +12,8 @@ var http = require('http');
 /**
  * MongoDB connection
  */
-const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_STRING)
-  .then(() => debug('MongoDB connected'))
+const connectToDatabase = require('../config/database')
+connectToDatabase()
 
 /**
  * Get port from environment and store in Express.
