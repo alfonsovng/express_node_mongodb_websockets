@@ -10,12 +10,12 @@ const Usuari = require('../models/usuariModel');
 module.exports = function(app) {
   passport.use(
     new LocalStrategy({ usernameField: 'email', passwordField: 'contrasenya' }, (email, contrasenya, done) => {
-      debug("email: ", email)
       // Match user
       Usuari.findOne({
         email: email
       }).then(user => {
         if (!user) {
+          debug("Usuari no trobat: ", email)
           return done(null, false, { message: 'Email i/o contrasenya incorrecta' });
         }
 
