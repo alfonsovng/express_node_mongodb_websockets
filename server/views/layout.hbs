@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>Chatter</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{#if error}}
-      <p>Error: {{error}}</p>
+    {{#if errors_msg}}
+      {{#each errors_msg}}
+        <p>Error: {{msg}}</p>
+      {{/each}}
     {{/if}}
     {{#if error_msg}}
       <p>Error msg: {{error_msg}}</p>

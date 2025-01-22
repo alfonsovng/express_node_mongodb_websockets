@@ -1,38 +1,79 @@
 <form action="/auth/register" method="POST">
-  <div >
-    <label for="nom">Name</label>
+  <div>
+    <label for="nom">Nom</label>
     <input
       type="text"
       id="nom"
       name="nom"
-      placeholder="Enter Name"
+      placeholder="Nom"
+      required="required"
+      value="{{nom}}"
     />
   </div>
-  <div >
+  <div>
+    <label for="nom">Cognoms</label>
+    <input
+      type="text"
+      id="cognoms"
+      name="cognoms"
+      placeholder="Cognoms"
+      required="required"
+      value="{{cognoms}}"
+    />
+  </div>
+  <div>
     <label for="email">Email</label>
     <input
       type="email"
       id="email"
       name="email"
-      placeholder="Enter Email"
+      placeholder="Email"
+      required="required"
+      value="{{email}}"
     />
   </div>
-  <div >
-    <label for="contrasenya">Password</label>
+    <div>
+    <label for="data_naixement">Data de naixement</label>
+    <input
+      type="date"
+      id="data_naixement"
+      name="data_naixement"
+      placeholder="Data de naixement"
+      required="required"
+      value="{{data_naixement}}"
+    />
+  </div>
+  <div>
+    <label for="data_naixement">Idiomes</label>
+    <select id="idiomes" name="idiomes" multiple="multiple" required="true">
+      <option value="ca" {{#contains idiomes "ca"}} selected {{/contains}}>Català</option>
+      <option value="es" {{#contains idiomes "es"}} selected {{/contains}}>Castellà</option>
+      <option value="en" {{#contains idiomes "en"}} selected {{/contains}}>Anglès</option>
+      <option value="fr" {{#contains idiomes "fr"}} selected {{/contains}}>Francès</option>
+      <option value="it" {{#contains idiomes "it"}} selected {{/contains}}>Italià</option>
+      <option value="de" {{#contains idiomes "de"}} selected {{/contains}}>Alemany</option>
+    </select>
+  </div>
+  <div>
+    <label for="contrasenya">Contrasenya</label>
     <input
       type="password"
       id="contrasenya"
       name="contrasenya"
-      placeholder="Create Password"
+      placeholder="Contrasenya"
+      required="required"
+      value="{{contrasenya}}"
     />
   </div>
-  <div >
-    <label for="contrasenya2">Confirm Password</label>
+  <div>
+    <label for="contrasenya2">Confirma la contrasenya</label>
     <input
       type="password"
       id="contrasenya2"
       name="contrasenya2"
-      placeholder="Confirm Password"
+      placeholder="Confirma la contrasenya"
+      required="required"
+      value="{{contrasenya2}}"
     />
   </div>
   <button type="submit">

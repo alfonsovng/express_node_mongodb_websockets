@@ -12,48 +12,56 @@ const AuthController = {
         res.render('auth/register')
     },
     post_register:(req, res, next)=>{
-        const { nom, email, contrasenya, contrasenya2 } = req.body;
-        let errors = [];
+        const { nom, cognoms, email, data_naixement, idiomes, contrasenya, contrasenya2 } = req.body;
+        let errors_msg = [];
 
-        if (!nom || !email || !contrasenya || !contrasenya2) {
-            errors.push({ msg: 'Please enter all fields' });
+        debug("Idiomes ", idiomes)
+
+        if (!nom || !cognoms || !email || !data_naixement || !contrasenya || !contrasenya2) {
+            errors_msg.push({ msg: 'Please enter all fields' });
         }
 
         if (contrasenya != contrasenya2) {
-            errors.push({ msg: 'Passwords do not match' });
+            errors_msg.push({ msg: 'Passwords do not match' });
         }
 
         if (contrasenya.length < 6) {
-            errors.push({ msg: 'Password must be at least 6 characters' });
+            errors_msg.push({ msg: 'Password must be at least 6 characters' });
         }
 
-        if (errors.length > 0) {
-            res.render('register', {
-            errors,
-            nom,
-            email,
-            contrasenya,
-            contrasenya2
+        if (errors_msg.length > 0) {
+            res.render('auth/register', {
+                errors_msg,
+                nom,
+                cognoms,
+                email,
+                data_naixement,
+                idiomes,
+                contrasenya,
+                contrasenya2
             });
         } else {
             Usuari.findOne({ email: email }).then(usuari => {
             if (usuari) {
-                errors.push({ msg: 'Email already exists' });
-                res.render('register', {
-                errors,
-                nom,
-                email,
-                contrasenya,
-                contrasenya2
+                errors_msg.push({ msg: 'Email already exists' });
+                res.render('auth/register', {
+                    errors_msg,
+                    nom,
+                    cognoms,
+                    email,
+                    data_naixement,
+                    idiomes,
+                    contrasenya,
+                    contrasenya2
                 });
             } else {
                 const newUser = new Usuari({
-                nom: nom,
-                cognoms: "cognoms random",
-                data_naixement: new Date(),
-                email: email,
-                contrasenya: contrasenya,
-                idiomes: ['ca']
+                    nom: nom,
+                    cognoms:cognoms,
+                    data_naixement: new Date(data_naixement),
+                    email: email,
+                    contrasenya: contrasenya,
+                    idiomes: idiomes
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
